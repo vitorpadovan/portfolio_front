@@ -1,0 +1,29 @@
+.courseGroup {
+  width: 80vw;
+}
+
+.courseGroup h1 {
+  text-align: center;
+}
+
+.courseCard {
+  display: flex;
+  margin: 10px;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.courseList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.courseList::after {
+  /* content: "";
+  flex: auto;
+  justify-content: space-around; */
+}
+
+/* https://travishorn.com/some-ways-to-align-the-last-row-in-a-flexbox-grid-720f365dcb16 */
