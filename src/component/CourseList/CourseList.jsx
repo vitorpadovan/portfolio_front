@@ -21,8 +21,8 @@ export default function CourseList(params) {
   );
   return (
     <div className="courseGroup">
-      {Object.keys(groupByLanguage).map((language) => (
-        <Fragment>
+      {Object.keys(groupByLanguage).map((language, indice) => (
+        <Fragment key={indice}>
           <h1>{language}</h1>
           <div className="courseList">
             {groupByLanguage[language].map((e, i) => CourseCard(e, i))}
