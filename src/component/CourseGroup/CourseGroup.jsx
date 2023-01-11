@@ -1,4 +1,3 @@
-import { Button, Card, CardContent, ToggleButton } from "@mui/material";
 import { Fragment, useState } from "react";
 
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -27,23 +26,11 @@ export default function CourseGroup(props) {
               >
                 <div className="flex items-center space-x-4">
                   <div className="min-w-0 flex-auto space-y-1 font-semibold">
-                    <h2 className="text-slate-500 dark:text-slate-400 text-sm leading-6 truncate">
-                      {e.courseName}
+                    <h2 className="text-slate-500 dark:text-slate-400 text-sm leading-6">
+                      {originCourse(e)}
                     </h2>
                     <p className="text-slate-900 dark:text-slate-50 text-lg">
-                      {e.courseSource.description}{" "}
-                      {e.urlCurso != null ? (
-                        <a href={e.urlCurso} target="_blank">
-                          <OpenInNewIcon sx={{ color: "blue" }} />
-                        </a>
-                      ) : (
-                        <OpenInNewOffIcon sx={{ color: "red" }} />
-                      )}
-                      {e.urlCertificate != null ? (
-                        <a href={e.urlCertificate} target="_blank">
-                          <WorkspacePremiumIcon sx={{ color: "blue" }} />
-                        </a>
-                      ) : null}
+                      {e.courseName}
                     </p>
                   </div>
                 </div>
@@ -57,6 +44,26 @@ export default function CourseGroup(props) {
     </Fragment>
   );
 }
+function originCourse(e) {
+  return (
+    <Fragment>
+      {e.courseSource.description}{" "}
+      {e.urlCurso != null ? (
+        <a href={e.urlCurso} target="_blank">
+          <OpenInNewIcon sx={{ color: "blue" }} />
+        </a>
+      ) : (
+        <OpenInNewOffIcon sx={{ color: "red" }} />
+      )}
+      {e.urlCertificate != null ? (
+        <a href={e.urlCertificate} target="_blank">
+          <WorkspacePremiumIcon sx={{ color: "blue" }} />
+        </a>
+      ) : null}
+    </Fragment>
+  );
+}
+
 function toogleButton(ativo, setAtivo, props) {
   return (
     <button onClick={() => setAtivo(!ativo)}>
@@ -121,6 +128,8 @@ function ProgressBar(valor) {
     case valor >= 91.66 && valor < 100:
       tamanho = "full";
       break;
+    default:
+      tamanho = "1/2";
   }
 
   return valor >= 100 ? (
@@ -143,34 +152,5 @@ function ProgressBar(valor) {
         <div class="w-1.5 h-1.5 bg-cyan-500 dark:bg-cyan-400 rounded-full ring-1 ring-inset ring-slate-900/5"></div>
       </div> */}
     </div>
-  );
-}
-
-function Antigo(setAtivo, ativo, props) {
-  return (
-    <Fragment>
-      <Button onClick={() => setAtivo(!ativo)}>
-        <h1>
-          {props.language} ({props.group.length})
-        </h1>
-      </Button>
-      {ativo ? (
-        <div className="singleGroupCourse">
-          {props.group.map((e, i) => (
-            <Card className="cardCourse" key={i}>
-              <CardContent>
-                <strong>{e.courseName}</strong>
-                <br />
-                {e.courseSource.description}
-                <br />
-                <a href={e.urlCertificate}>Certificado</a>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      ) : (
-        <br />
-      )}
-    </Fragment>
   );
 }
