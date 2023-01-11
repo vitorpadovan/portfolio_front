@@ -1,0 +1,49 @@
+.singleGroupCourse {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px auto;
+}
+.singleGroupCourse > .cardCourse {
+  margin: 5px;
+}
+
+.cardCourse {
+  margin: 10px;
+  min-width: 30%;
+  max-width: 30%;
+}
+
+.toogleButton {
+  display: flex;
+  flex-direction: row;
+  width: 120px;
+  justify-content: space-around;
+  border-radius: 10px;
+  align-items: center;
+  align-content: center;
+  height: 50px;
+  border: 0 solid #e5e7eb;
+  background-color: #94a3b8;
+}
+
+.toogleButton.ativo {
+  background-color: #e2e8f0;
+}
+
+.toogleButton > .texto {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.toogleButton > .icone {
+  margin: 0px 10px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
