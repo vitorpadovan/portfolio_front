@@ -2,14 +2,12 @@ import { Button, Card, CardContent, ToggleButton } from "@mui/material";
 import { Fragment, useState } from "react";
 
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import AddBoxIcon from "@mui/icons-material/AddBox";
-import AddIcon from "@mui/icons-material/Add";
 
-import RemoveIcon from "@mui/icons-material/Remove";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
-import IndeterminateCheckBoxIcon from "@mui/icons-material/IndeterminateCheckBox";
+
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import OpenInNewOffIcon from "@mui/icons-material/OpenInNewOff";
+import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 
 import CheckIcon from "@mui/icons-material/Check";
 import "./CourseGroup.css";
@@ -35,12 +33,17 @@ export default function CourseGroup(props) {
                     <p className="text-slate-900 dark:text-slate-50 text-lg">
                       {e.courseSource.description}{" "}
                       {e.urlCurso != null ? (
-                        <a href={e.urlCurso}>
+                        <a href={e.urlCurso} target="_blank">
                           <OpenInNewIcon sx={{ color: "blue" }} />
                         </a>
                       ) : (
                         <OpenInNewOffIcon sx={{ color: "red" }} />
                       )}
+                      {e.urlCertificate != null ? (
+                        <a href={e.urlCertificate} target="_blank">
+                          <WorkspacePremiumIcon sx={{ color: "blue" }} />
+                        </a>
+                      ) : null}
                     </p>
                   </div>
                 </div>
