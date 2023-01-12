@@ -7,8 +7,9 @@ import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import OpenInNewOffIcon from "@mui/icons-material/OpenInNewOff";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
-
-import CheckIcon from "@mui/icons-material/Check";
+import LinearProgress from "@mui/material/LinearProgress";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import "./CourseGroup.css";
 
 export default function CourseGroup(props) {
@@ -21,7 +22,8 @@ export default function CourseGroup(props) {
         {ativo
           ? props.group.map((e, i) => (
               <div
-                class="bg-white border-slate-100 dark:bg-slate-800 dark:border-slate-500 
+                key={i}
+                className="bg-white border-slate-100 dark:bg-slate-800 dark:border-slate-500 
     border-b rounded-xl p-4 pb-6 sm:p-10 sm:pb-8 lg:p-6 xl:p-10 xl:pb-8 space-y-6 sm:space-y-8 lg:space-y-6 xl:space-y-8 w-1/3 cardCourse"
               >
                 <div className="flex items-center space-x-4">
@@ -29,13 +31,18 @@ export default function CourseGroup(props) {
                     <h2 className="text-slate-500 dark:text-slate-400 text-sm leading-6">
                       {originCourse(e)}
                     </h2>
-                    <p className="text-slate-900 dark:text-slate-50 text-lg">
+                    <p className="text-slate-900 dark:text-slate-50 text-lg min-h-max">
                       {e.courseName}
                     </p>
                   </div>
                 </div>
-                <div className="space-y-2">
-                  {ProgressBar(e.porcentagemConcluida)}
+                <div>{ProgressBar(e.porcentagemConcluida)}</div>
+                <div className="tags">
+                  {e.tags.map((t, i) => (
+                    <span key={i} className="smartTag">
+                      #{t.name}
+                    </span>
+                  ))}
                 </div>
               </div>
             ))
@@ -50,14 +57,14 @@ function originCourse(e) {
       {e.courseSource.description}{" "}
       {e.urlCurso != null ? (
         <a href={e.urlCurso} target="_blank">
-          <OpenInNewIcon sx={{ color: "blue" }} />
+          <OpenInNewIcon sx={{ color: "blue", fontSize: 25 }} />
         </a>
       ) : (
         <OpenInNewOffIcon sx={{ color: "red" }} />
       )}
       {e.urlCertificate != null ? (
         <a href={e.urlCertificate} target="_blank">
-          <WorkspacePremiumIcon sx={{ color: "blue" }} />
+          <WorkspacePremiumIcon sx={{ color: "green", fontSize: 25 }} />
         </a>
       ) : null}
     </Fragment>
@@ -78,79 +85,18 @@ function toogleButton(ativo, setAtivo, props) {
 }
 
 function ProgressBar(valor) {
-  let tamanho = "1/2";
-  switch (true) {
-    case valor >= 0 && valor < 8.33:
-      tamanho = "1/12";
-      break;
-    case valor >= 8.33 && valor < 16.66:
-      tamanho = "1/6";
-      break;
-    case valor >= 16.66 && valor < 20:
-      tamanho = "1/5";
-      break;
-    case valor >= 20 && valor < 25:
-      tamanho = "1/4";
-      break;
-    case valor >= 25 && valor < 33.33:
-      tamanho = "1/3";
-      break;
-    case valor >= 33.33 && valor < 40:
-      tamanho = "2/5";
-      break;
-    case valor >= 40 && valor < 41.66:
-      tamanho = "5/12";
-      break;
-    case valor >= 41.66 && valor < 50:
-      tamanho = "1/2";
-      break;
-    case valor >= 50 && valor < 58.33:
-      tamanho = "7/12";
-      break;
-    case valor >= 58.33 && valor < 60:
-      tamanho = "3/5";
-      break;
-    case valor >= 60 && valor < 66.66:
-      tamanho = "2/3";
-      break;
-    case valor >= 66.66 && valor < 75:
-      tamanho = "3/4";
-      break;
-    case valor >= 75 && valor < 80:
-      tamanho = "4/5";
-      break;
-    case valor >= 80 && valor < 83.33:
-      tamanho = "5/6";
-      break;
-    case valor >= 83.33 && valor < 91.66:
-      tamanho = "11/12";
-      break;
-    case valor >= 91.66 && valor < 100:
-      tamanho = "full";
-      break;
-    default:
-      tamanho = "1/2";
-  }
-
-  return valor >= 100 ? (
-    <CheckIcon color="success" sx={{ fontSize: 40 }} />
-  ) : (
-    <div class="relative">
-      <div class="bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
-        <div
-          class={`bg-cyan-500 dark:bg-cyan-400 w-${tamanho} h-2`}
-          role="progressbar"
-          aria-label="music progress"
-          aria-valuenow="1456"
-          aria-valuemin="0"
-          aria-valuemax="4550"
-        ></div>
+  return (
+    <div className="relative">
+      <div className="bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{ width: "100%", mr: 1, ml: 1 }}>
+            <LinearProgress variant="determinate" value={valor} />
+          </Box>
+          <Box sx={{ minWidth: 50 }}>
+            <Typography variant="body2">{`${Math.round(valor)}%`}</Typography>
+          </Box>
+        </Box>
       </div>
-      {/* <div
-        class={`ring-cyan-500 dark:ring-cyan-400 ring-2 absolute left-${tamanho} top-1/2 w-4 h-4 -mt-2 -ml-2 flex items-center justify-center bg-white rounded-full shadow`}
-      >
-        <div class="w-1.5 h-1.5 bg-cyan-500 dark:bg-cyan-400 rounded-full ring-1 ring-inset ring-slate-900/5"></div>
-      </div> */}
     </div>
   );
 }
