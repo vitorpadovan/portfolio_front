@@ -2,21 +2,31 @@ import React, { useEffect, useState } from "react";
 import courseService from "../../service/CourseService";
 import "./CourseList.css";
 import CourseGroup from "../CourseGroup/CourseGroup";
+import { connect } from "react-redux";
+import { addCourseList } from "../../store/actions/ActCourse.js";
 
-export default function CourseList(params) {
-  const [list, setLista] = useState([]);
+function CourseList(params) {
   const [groupByLanguage, setGroupByLanguage] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       const result = await courseService.GetCourses();
-      setLista(result.data);
+      params.addCourseList(result.data);
     };
     fetchData();
   }, []);
 
   useEffect(() => {
-    setGroupByLanguage(extrairGroups(list));
-  }, [list]);
+    setGroupByLanguage(extrairGroups(params.courses.selectedCourseList));
+  }, [params.courses]);
+
+  function extrairGroups(list) {
+    require("core-js/actual/array/group-by");
+    const groupByLanguage = list.groupBy(
+      (curso) => curso.courseLanguage.description
+    );
+    return groupByLanguage;
+  }
 
   return (
     <div className="courseGroups">
@@ -31,10 +41,20 @@ export default function CourseList(params) {
   );
 }
 
-function extrairGroups(list) {
-  require("core-js/actual/array/group-by");
-  const groupByLanguage = list.groupBy(
-    (curso) => curso.courseLanguage.description
-  );
-  return groupByLanguage;
+function mapStateToProps(state) {
+  return {
+    selectedSmartTags: state.selectedSmartTags,
+    courses: state.courses,
+  };
 }
+
+function mapActionCreatorsToProp(dispatch) {
+  return {
+    addCourseList(courseList) {
+      const action = addCourseList(courseList);
+      dispatch(action);
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapActionCreatorsToProp)(CourseList);

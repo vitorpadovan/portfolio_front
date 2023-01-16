@@ -70,6 +70,7 @@
   border-radius: 3px;
 }
 
-.wv-70 {
-  width: 70%;
+.smartTag.smartTagAtiva {
+  background-color: #e2e8f0;
+  color: black;
 }
