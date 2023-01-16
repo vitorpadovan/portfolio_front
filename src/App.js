@@ -2,11 +2,15 @@ import "./App.css";
 import CardGroup from "./component/CardGroup/CardGroup";
 import EmDesenvolvimento from "./component/EmDesenvolvimento/EmDesenvolvimento";
 import CourseList from "./component/CourseList/CourseList";
+import UpdateCard from "./component/UpdateCard/UpdateCard";
 
 function App() {
   return (
     <div className="centerpage font-sans">
       <h1 className="font-black text-6xl mb-10">Vitor's portfolio</h1>
+      <CardGroup title="Atualização">
+        <UpdateCard />
+      </CardGroup>
       <CardGroup title="Sobre">
         <EmDesenvolvimento />
       </CardGroup>
