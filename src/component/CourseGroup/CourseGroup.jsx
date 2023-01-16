@@ -23,7 +23,7 @@ export default function CourseGroup(props) {
           ? props.group.map((e, i) => (
               <div
                 key={i}
-                className="bg-white border-slate-100 dark:bg-slate-800 dark:border-slate-500 
+                className="bg-slate-800 border-slate-500 
     border-b rounded-xl p-4 pb-6 sm:p-10 sm:pb-8 lg:p-6 xl:p-10 xl:pb-8 space-y-6 sm:space-y-8 lg:space-y-6 xl:space-y-8 w-1/3 cardCourse"
               >
                 <div className="flex items-center space-x-4">
@@ -31,7 +31,7 @@ export default function CourseGroup(props) {
                     <h2 className="text-slate-500 dark:text-slate-400 text-sm leading-6">
                       {originCourse(e)}
                     </h2>
-                    <p className="text-slate-900 dark:text-slate-50 text-lg min-h-max">
+                    <p className="text-slate-50 text-lg min-h-max">
                       {e.courseName}
                     </p>
                   </div>
