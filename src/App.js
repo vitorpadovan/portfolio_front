@@ -27,7 +27,12 @@ function App() {
         <EmDesenvolvimento />
       </CardGroup>
 
-      <h1>Servidor de dados: {process.env.REACT_APP_API_LINK}</h1>
+      <h1>
+        Swagger:{" "}
+        <a href="http://backend.vitorpadovan.com.br/">
+          http://backend.vitorpadovan.com.br
+        </a>
+      </h1>
     </div>
   );
 }
