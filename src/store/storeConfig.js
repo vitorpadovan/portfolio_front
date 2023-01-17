@@ -7,6 +7,12 @@ const courseState = {
   selectedSmartTags: [],
 };
 
+const projectList = {
+  projectList: [],
+  selectedProjectList: [],
+  selectedSmartTags: [],
+};
+
 const reducers = combineReducers({
   selectedSmartTags: function (state = smartTagsState, action) {
     switch (action.type) {
@@ -25,6 +31,49 @@ const reducers = combineReducers({
           };
         }
         break;
+      default:
+        return state;
+    }
+  },
+
+  projectList: function (state = projectList, action) {
+    switch (action.type) {
+      case "LOAD_PROJECTS":
+        return {
+          ...state,
+          projectList: action.payload,
+          selectedProjectList: action.payload,
+        };
+      case "ADICIONAR_TAG":
+        var selectedTags = state.selectedSmartTags.concat(action.payload);
+        return {
+          ...state,
+          selectedSmartTags: selectedTags,
+          selectedProjectList: filterCoursesByTag(
+            state.projectList,
+            selectedTags
+          ),
+        };
+      case "REMOVER_TAG":
+        const index = state.selectedSmartTags.indexOf(action.payload);
+        if (index > -1) {
+          state.selectedSmartTags.splice(index, 1);
+          if (state.selectedSmartTags.length <= 0) {
+            return {
+              ...state,
+              selectedSmartTags: [],
+              selectedProjectList: state.projectList,
+            };
+          }
+          return {
+            ...state,
+            selectedSmartTags: state.selectedSmartTags,
+            selectedProjectList: filterCoursesByTag(
+              state.projectList,
+              state.selectedSmartTags
+            ),
+          };
+        }
       default:
         return state;
     }

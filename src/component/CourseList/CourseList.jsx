@@ -30,9 +30,9 @@ function CourseList(params) {
 
   return (
     <div className="courseGroups">
-      {Object.keys(groupByLanguage).map((language, indice) => (
+      {Object.keys(groupByLanguage).map((language) => (
         <CourseGroup
-          key={indice}
+          key={language}
           language={language}
           group={groupByLanguage[language]}
         />

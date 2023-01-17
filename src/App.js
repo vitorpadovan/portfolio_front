@@ -3,6 +3,7 @@ import CardGroup from "./component/CardGroup/CardGroup";
 import EmDesenvolvimento from "./component/EmDesenvolvimento/EmDesenvolvimento";
 import CourseList from "./component/CourseList/CourseList";
 import UpdateCard from "./component/UpdateCard/UpdateCard";
+import ProjectList from "./component/ProjectList/ProjectList";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <EmDesenvolvimento />
       </CardGroup>
       <CardGroup title="Projetos">
-        <EmDesenvolvimento />
+        <ProjectList />
       </CardGroup>
       <CardGroup title="Serviços">
         <EmDesenvolvimento title="Serviços" />

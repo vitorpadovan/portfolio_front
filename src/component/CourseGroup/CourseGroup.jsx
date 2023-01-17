@@ -5,21 +5,21 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
 import "./CourseGroup.css";
-import SmartTag from "../SmartTag/SmartTag";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import OriginCourse from "../CourseOrigin/CourseOrigin";
+import SmartTagList from "../SmartTagList/SmartTagList";
 
 function CourseGroup(props) {
-  const [ativo, setAtivo] = useState(true);
+  const [ativo, setAtivo] = useState(false);
   return (
     <Fragment>
       {toogleButton(ativo, setAtivo, props)}
 
       <div className="singleGroupCourse">
         {ativo
-          ? props.group.map((e, i) => (
+          ? props.group.map((e) => (
               <div
-                key={i}
+                key={e.idCourse}
                 className="bg-slate-800 border-slate-500 
     border-b rounded-xl p-4 pb-6 sm:p-10 sm:pb-8 lg:p-6 xl:p-10 xl:pb-8 space-y-6 sm:space-y-8 lg:space-y-6 xl:space-y-8 w-1/3 cardCourse"
               >
@@ -34,11 +34,7 @@ function CourseGroup(props) {
                   </div>
                 </div>
                 <div>{<ProgressBar value={e.porcentagemConcluida} />}</div>
-                <div className="tags">
-                  {e.tags.map((t, i) => {
-                    return <SmartTag tag={t} key={i} />;
-                  })}
-                </div>
+                <SmartTagList tags={e.tags} />
               </div>
             ))
           : null}

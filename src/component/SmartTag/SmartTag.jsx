@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { addSmartTag, delSmartTag } from "../../store/actions/SmarTags.js";
+import "./SmartTag.css";
 
 function SmartTag(props) {
   var smartTagActive = isSmartTagActive(
