@@ -12,10 +12,10 @@ import SmartTagList from "../SmartTagList/SmartTagList";
 function CourseGroup(props) {
   const [ativo, setAtivo] = useState(false);
   return (
-    <Fragment>
+    <div className={`singleGroupOfCouse ${ativo ? "ativo" : ""}`}>
       {toogleButton(ativo, setAtivo, props)}
 
-      <div className="singleGroupCourse">
+      <div className="coursesOfGroup">
         {ativo
           ? props.group.map((e) => (
               <div
@@ -39,7 +39,7 @@ function CourseGroup(props) {
             ))
           : null}
       </div>
-    </Fragment>
+    </div>
   );
 }
 
