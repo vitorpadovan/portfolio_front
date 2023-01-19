@@ -4,6 +4,7 @@ import EmDesenvolvimento from "./component/EmDesenvolvimento/EmDesenvolvimento";
 import CourseList from "./component/CourseList/CourseList";
 import UpdateCard from "./component/UpdateCard/UpdateCard";
 import ProjectList from "./component/ProjectList/ProjectList";
+import JobList from "./component/JobList/JobList";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         <ProjectList />
       </CardGroup>
       <CardGroup title="Serviços">
-        <EmDesenvolvimento title="Serviços" />
+        <JobList />
       </CardGroup>
       <CardGroup title="Cursos">
         <CourseList />
