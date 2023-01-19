@@ -13,6 +13,12 @@ const projectList = {
   selectedSmartTags: [],
 };
 
+const jobList = {
+  jobList: [],
+  selectedJobList: [],
+  selectedSmartTags: [],
+};
+
 const reducers = combineReducers({
   selectedSmartTags: function (state = smartTagsState, action) {
     switch (action.type) {
@@ -74,6 +80,19 @@ const reducers = combineReducers({
             ),
           };
         }
+      default:
+        return state;
+    }
+  },
+
+  jobList: function (state = jobList, action) {
+    switch (action.type) {
+      case "LOAD_JOBS":
+        return {
+          ...state,
+          jobList: action.payload,
+          selectedJobList: action.payload,
+        };
       default:
         return state;
     }
