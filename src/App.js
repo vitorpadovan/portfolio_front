@@ -12,21 +12,18 @@ function App() {
       <CardGroup title="Atualização">
         <UpdateCard />
       </CardGroup>
-      <CardGroup title="Sobre">
+      {/* <CardGroup title="Sobre">
         <EmDesenvolvimento />
-      </CardGroup>
+      </CardGroup> */}
       <CardGroup title="Projetos">
         <ProjectList />
-      </CardGroup>
-      <CardGroup title="Serviços">
-        <EmDesenvolvimento title="Serviços" />
       </CardGroup>
       <CardGroup title="Cursos">
         <CourseList />
       </CardGroup>
-      <CardGroup title="Contato">
+      {/* <CardGroup title="Contato">
         <EmDesenvolvimento />
-      </CardGroup>
+      </CardGroup> */}
 
       <h1>
         Swagger:{" "}
