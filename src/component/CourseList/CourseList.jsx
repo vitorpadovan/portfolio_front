@@ -17,7 +17,7 @@ function CourseList(params) {
   }, []);
 
   useEffect(() => {
-    setGroupByLanguage(extrairGroups(params.courses.selectedCourseList));
+    setGroupByLanguage(extrairGroups(params.courses.selectedList));
   }, [params.courses]);
 
   function extrairGroups(list) {

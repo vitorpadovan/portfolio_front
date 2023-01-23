@@ -14,8 +14,8 @@ function JobList(props) {
   }, []);
   return (
     <>
-      <h1>Vitor {props.jobList.selectedJobList.length}</h1>
-      {props.jobList.selectedJobList.map((e, i) => (
+      <h1>Vitor {props.jobList.selectedList.length}</h1>
+      {props.jobList.selectedList.map((e, i) => (
         <JobCard key={e.idJob} job={e} />
       ))}
     </>

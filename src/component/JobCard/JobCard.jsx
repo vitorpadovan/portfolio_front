@@ -19,7 +19,7 @@ export default function JobCard(props) {
         <div className="jobActivity">
           <ol>
             {e.activityList.map((ex, i) => (
-              <li key={ex.idEmploymentActivity}>{ex.title}</li>
+              <li key={ex.idEmploymentActivity}>- {ex.title}</li>
             ))}
           </ol>
         </div>

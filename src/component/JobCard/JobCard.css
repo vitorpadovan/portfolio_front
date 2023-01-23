@@ -46,10 +46,3 @@
 }
 .jobActivity > ol > li {
 }
-
-li:before {
-  content: "arrow_right";
-  font-family: "Material Icons";
-  /* font-size: 40px; */
-  vertical-align: -15%;
-}

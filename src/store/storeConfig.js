@@ -1,21 +1,10 @@
 import { createStore, combineReducers } from "redux";
 
 const smartTagsState = { selecionados: [] };
-const courseState = {
-  courseList: [],
-  selectedCourseList: [],
-  selectedSmartTags: [],
-};
 
-const projectList = {
-  projectList: [],
-  selectedProjectList: [],
-  selectedSmartTags: [],
-};
-
-const jobList = {
-  jobList: [],
-  selectedJobList: [],
+const initialState = {
+  itemList: [],
+  selectedList: [],
   selectedSmartTags: [],
 };
 
@@ -42,101 +31,52 @@ const reducers = combineReducers({
     }
   },
 
-  projectList: function (state = projectList, action) {
+  projectList: function (state = initialState, action) {
     switch (action.type) {
       case "LOAD_PROJECTS":
         return {
           ...state,
-          projectList: action.payload,
-          selectedProjectList: action.payload,
+          itemList: action.payload,
+          selectedList: action.payload,
         };
       case "ADICIONAR_TAG":
-        var selectedTags = state.selectedSmartTags.concat(action.payload);
-        return {
-          ...state,
-          selectedSmartTags: selectedTags,
-          selectedProjectList: filterCoursesByTag(
-            state.projectList,
-            selectedTags
-          ),
-        };
+        return AdicionarTag(state, action);
       case "REMOVER_TAG":
-        const index = state.selectedSmartTags.indexOf(action.payload);
-        if (index > -1) {
-          state.selectedSmartTags.splice(index, 1);
-          if (state.selectedSmartTags.length <= 0) {
-            return {
-              ...state,
-              selectedSmartTags: [],
-              selectedProjectList: state.projectList,
-            };
-          }
-          return {
-            ...state,
-            selectedSmartTags: state.selectedSmartTags,
-            selectedProjectList: filterCoursesByTag(
-              state.projectList,
-              state.selectedSmartTags
-            ),
-          };
-        }
+        return RemoverTag(state, action);
       default:
         return state;
     }
   },
 
-  jobList: function (state = jobList, action) {
+  jobList: function (state = initialState, action) {
     switch (action.type) {
       case "LOAD_JOBS":
         return {
           ...state,
-          jobList: action.payload,
-          selectedJobList: action.payload,
+          itemList: action.payload,
+          selectedList: action.payload,
         };
+      case "ADICIONAR_TAG":
+        return AdicionarTag(state, action);
+      case "REMOVER_TAG":
+        return RemoverTag(state, action);
       default:
         return state;
     }
   },
 
-  courses: function (state = courseState, action) {
+  courses: function (state = initialState, action) {
     switch (action.type) {
       case "LOAD_COURSES":
         return {
           ...state,
-          courseList: action.payload,
-          selectedCourseList: action.payload,
+          itemList: action.payload,
+          selectedList: action.payload,
         };
       case "ADICIONAR_TAG":
-        var selectedTags = state.selectedSmartTags.concat(action.payload);
-        return {
-          ...state,
-          selectedSmartTags: selectedTags,
-          selectedCourseList: filterCoursesByTag(
-            state.courseList,
-            selectedTags
-          ),
-        };
+        return AdicionarTag(state, action);
       case "REMOVER_TAG":
-        const index = state.selectedSmartTags.indexOf(action.payload);
-        if (index > -1) {
-          state.selectedSmartTags.splice(index, 1);
-          if (state.selectedSmartTags.length <= 0) {
-            return {
-              ...state,
-              selectedSmartTags: [],
-              selectedCourseList: state.courseList,
-            };
-          }
-          return {
-            ...state,
-            selectedSmartTags: state.selectedSmartTags,
-            selectedCourseList: filterCoursesByTag(
-              state.courseList,
-              state.selectedSmartTags
-            ),
-          };
-        }
-        return state;
+        return RemoverTag(state, action);
       default:
         return state;
     }
@@ -157,6 +97,34 @@ const filterCoursesByTag = function filterCoursesByTag(
   });
   return response;
 };
+
+function AdicionarTag(state, action) {
+  var selectedTags = state.selectedSmartTags.concat(action.payload);
+  return {
+    ...state,
+    selectedSmartTags: selectedTags,
+    selectedList: filterCoursesByTag(state.itemList, selectedTags),
+  };
+}
+
+function RemoverTag(state, action) {
+  const index = state.selectedSmartTags.indexOf(action.payload);
+  if (index > -1) {
+    state.selectedSmartTags.splice(index, 1);
+    if (state.selectedSmartTags.length <= 0) {
+      return {
+        ...state,
+        selectedSmartTags: [],
+        selectedList: state.itemList,
+      };
+    }
+    return {
+      ...state,
+      selectedSmartTags: state.selectedSmartTags,
+      selectedList: filterCoursesByTag(state.itemList, state.selectedSmartTags),
+    };
+  }
+}
 
 function storeConfig() {
   return createStore(reducers);
