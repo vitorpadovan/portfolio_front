@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { addProjectList } from "../../store/actions/ActProject";
 
 function ProjectList(props) {
-  const projectList = props.projectList.selectedProjectList;
+  const projectList = props.projectList.selectedItems;
   useEffect(() => {
     const fetchData = async () => {
       const result = await projectService.GetProjects();
