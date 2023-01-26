@@ -1,3 +1,29 @@
+@media (max-width: 850px) {
+  .jobCard {
+    display: flex;
+    justify-content: center !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    align-content: stretch !important;
+    margin: 15px;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  .jobLogo {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100% !important;
+    max-width: 100% !important;
+    align-self: stretch;
+    flex: 1;
+    padding: 30px;
+    margin: 0px 0px 15px 0px !important;
+    border-radius: 10px;
+  }
+}
 .jobCard {
   display: flex;
   justify-content: left;

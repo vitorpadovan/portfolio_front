@@ -1,24 +1,66 @@
 import { createStore, combineReducers } from "redux";
 
 const smartTagsState = { selecionados: [] };
-const courseState = {
-  courseList: [],
-  selectedCourseList: [],
+const initialState = {
+  itemList: [],
+  selectedItems: [],
   selectedSmartTags: [],
 };
 
-const projectList = {
-  projectList: [],
-  selectedProjectList: [],
-  selectedSmartTags: [],
+const redefineState = function redefineState(state, action, actionLoad) {
+  switch (action.type) {
+    case actionLoad:
+      return {
+        ...state,
+        itemList: action.payload,
+        selectedItems: action.payload,
+      };
+    case "ADICIONAR_TAG":
+      var selectedTags = state.selectedSmartTags.concat(action.payload);
+      return {
+        ...state,
+        selectedSmartTags: selectedTags,
+        selectedItems: filterCoursesByTag(state.itemList, selectedTags),
+      };
+    case "REMOVER_TAG":
+      const index = state.selectedSmartTags.indexOf(action.payload);
+      if (index > -1) {
+        state.selectedSmartTags.splice(index, 1);
+        if (state.selectedSmartTags.length <= 0) {
+          return {
+            ...state,
+            selectedSmartTags: [],
+            selectedItems: state.itemList,
+          };
+        }
+        return {
+          ...state,
+          selectedSmartTags: state.selectedSmartTags,
+          selectedItems: filterCoursesByTag(
+            state.itemList,
+            state.selectedSmartTags
+          ),
+        };
+      }
+    default:
+      return state;
+  }
 };
 
-const jobList = {
-  jobList: [],
-  selectedJobList: [],
-  selectedSmartTags: [],
+const filterCoursesByTag = function filterCoursesByTag(
+  courseList,
+  selectedSmartTags
+) {
+  var response = [];
+  selectedSmartTags.forEach((e) => {
+    courseList.forEach((course) => {
+      if (course.tags.some((tag) => tag.idSmartTag === e)) {
+        response.push(course);
+      }
+    });
+  });
+  return response;
 };
-
 const reducers = combineReducers({
   selectedSmartTags: function (state = smartTagsState, action) {
     switch (action.type) {
@@ -42,121 +84,21 @@ const reducers = combineReducers({
     }
   },
 
-  projectList: function (state = projectList, action) {
-    switch (action.type) {
-      case "LOAD_PROJECTS":
-        return {
-          ...state,
-          projectList: action.payload,
-          selectedProjectList: action.payload,
-        };
-      case "ADICIONAR_TAG":
-        var selectedTags = state.selectedSmartTags.concat(action.payload);
-        return {
-          ...state,
-          selectedSmartTags: selectedTags,
-          selectedProjectList: filterCoursesByTag(
-            state.projectList,
-            selectedTags
-          ),
-        };
-      case "REMOVER_TAG":
-        const index = state.selectedSmartTags.indexOf(action.payload);
-        if (index > -1) {
-          state.selectedSmartTags.splice(index, 1);
-          if (state.selectedSmartTags.length <= 0) {
-            return {
-              ...state,
-              selectedSmartTags: [],
-              selectedProjectList: state.projectList,
-            };
-          }
-          return {
-            ...state,
-            selectedSmartTags: state.selectedSmartTags,
-            selectedProjectList: filterCoursesByTag(
-              state.projectList,
-              state.selectedSmartTags
-            ),
-          };
-        }
-      default:
-        return state;
-    }
+  projectList: function (state = initialState, action) {
+    var actionLoad = "LOAD_PROJECTS";
+    return redefineState(state, action, actionLoad);
   },
 
-  jobList: function (state = jobList, action) {
-    switch (action.type) {
-      case "LOAD_JOBS":
-        return {
-          ...state,
-          jobList: action.payload,
-          selectedJobList: action.payload,
-        };
-      default:
-        return state;
-    }
+  jobList: function (state = initialState, action) {
+    var actionLoad = "LOAD_JOBS";
+    return redefineState(state, action, actionLoad);
   },
 
-  courses: function (state = courseState, action) {
-    switch (action.type) {
-      case "LOAD_COURSES":
-        return {
-          ...state,
-          courseList: action.payload,
-          selectedCourseList: action.payload,
-        };
-      case "ADICIONAR_TAG":
-        var selectedTags = state.selectedSmartTags.concat(action.payload);
-        return {
-          ...state,
-          selectedSmartTags: selectedTags,
-          selectedCourseList: filterCoursesByTag(
-            state.courseList,
-            selectedTags
-          ),
-        };
-      case "REMOVER_TAG":
-        const index = state.selectedSmartTags.indexOf(action.payload);
-        if (index > -1) {
-          state.selectedSmartTags.splice(index, 1);
-          if (state.selectedSmartTags.length <= 0) {
-            return {
-              ...state,
-              selectedSmartTags: [],
-              selectedCourseList: state.courseList,
-            };
-          }
-          return {
-            ...state,
-            selectedSmartTags: state.selectedSmartTags,
-            selectedCourseList: filterCoursesByTag(
-              state.courseList,
-              state.selectedSmartTags
-            ),
-          };
-        }
-        return state;
-      default:
-        return state;
-    }
+  courses: function (state = initialState, action) {
+    var actionLoad = "LOAD_COURSES";
+    return redefineState(state, action, actionLoad);
   },
 });
-
-const filterCoursesByTag = function filterCoursesByTag(
-  courseList,
-  selectedSmartTags
-) {
-  var response = [];
-  selectedSmartTags.forEach((e) => {
-    courseList.forEach((course) => {
-      if (course.tags.some((tag) => tag.idSmartTag === e)) {
-        response.push(course);
-      }
-    });
-  });
-  return response;
-};
 
 function storeConfig() {
   return createStore(reducers);
