@@ -1,0 +1,7 @@
+.contact {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 30%;
+  margin: 30px auto;
+}
