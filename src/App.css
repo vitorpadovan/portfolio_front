@@ -14,7 +14,7 @@ body {
 }
 
 @media (max-width: 850px) {
-  .fullpage {
+  /* .fullpage {
     flex-direction: column !important;
   }
 
@@ -27,9 +27,9 @@ body {
 
   .navbar > .navItem {
     flex: 1;
-  }
+  } */
 }
-.fullpage {
+/* .fullpage {
   display: flex;
   flex-direction: row;
 }
@@ -49,4 +49,4 @@ body {
   border-radius: 5px;
   padding: 3px;
   margin: 3px;
-}
+} */

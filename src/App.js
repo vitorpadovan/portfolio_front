@@ -1,6 +1,5 @@
 import "./App.css";
 import CardGroup from "./component/CardGroup/CardGroup";
-import EmDesenvolvimento from "./component/EmDesenvolvimento/EmDesenvolvimento";
 import CourseList from "./component/CourseList/CourseList";
 import UpdateCard from "./component/UpdateCard/UpdateCard";
 import ProjectList from "./component/ProjectList/ProjectList";
@@ -9,6 +8,7 @@ import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import { connect } from "react-redux";
 import AboutCard from "./component/AboutCard/AboutCard";
 import ContactCard from "./component/ContactCard/ContactCard";
+import Navbar from "./component/Navbar/Navbar";
 
 function App(props) {
   const jobs = props.jobList;
@@ -45,18 +45,9 @@ function App(props) {
   ];
   return (
     <Router>
-      <div className="fullpage">
-        <div className="navbar">
-          {sections.map((e, i) => {
-            return (
-              <Link className="navItem" to={e.link} key={e.id}>
-                {e.name}
-              </Link>
-            );
-          })}
-        </div>
-        <div className="centerpage font-sans content">
-          <h1 className="font-black text-6xl mb-10">Vitor's portfolio</h1>
+      <div className="centerpage">
+        <Navbar sections={sections} />
+        <div className="centerpage font-sans mx-auto">
           <Routes>
             {sections.map((e, i) => (
               <Route
