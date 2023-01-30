@@ -20,7 +20,7 @@ function ProjectCard(props) {
         {props.project.links.map((e, i) => (
           <p key={i}>
             <a href={e.url} target="_blank">
-              {LinkIcon()} {isPublicLink(e)} {e.title}
+              {LinkIcon()} {getLock(e)} {e.title} {getPrivateMessage(e)}
             </a>
           </p>
         ))}
@@ -37,10 +37,18 @@ function LinkIcon() {
   return <OpenInNewIcon sx={{ color: "black", fontSize: 20 }} />;
 }
 
-function isPublicLink(e) {
+function getLock(e) {
   return e.private ? (
     <Lock sx={{ color: "red", fontSize: 20 }} />
   ) : (
     <LockOpen sx={{ color: "green", fontSize: 20 }} />
   );
+}
+
+function getPrivateMessage(e) {
+  return e.private ? (
+    <span className="text-red-600 font-black">
+      (BLOQUEADO, SOLICITE ACESSO)
+    </span>
+  ) : null;
 }
