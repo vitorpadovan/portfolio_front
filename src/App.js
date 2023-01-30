@@ -47,7 +47,7 @@ function App(props) {
     <Router>
       <div className="centerpage">
         <Navbar sections={sections} />
-        <div className="centerpage font-sans mx-auto">
+        <div className="centerpage font-sans min-w-full">
           <Routes>
             {sections.map((e, i) => (
               <Route
