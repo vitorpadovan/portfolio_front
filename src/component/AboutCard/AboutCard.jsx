@@ -19,9 +19,8 @@ function AboutCard(props) {
       </p>
       <p>
         Tento sempre aplicar minhas ideias no projeto de tal maneira que eu
-        possa vender um produto final de qualidade. Porem por ser apenas uma
-        pessoa e geralmente os projetos são um pouco grandes acabo não
-        conseguindo finaliza-los e tiro isso como proveitos para estudar.
+        possa vender um produto final de qualidade e tiro isso como proveitos
+        para estudar e praticar.
       </p>
     </div>
   );
