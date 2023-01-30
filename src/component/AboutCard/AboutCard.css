@@ -1,0 +1,10 @@
+.about {
+  text-align: left;
+  text-indent: 50px;
+  padding: 30px;
+}
+
+.about > p > a {
+  color: blue !important;
+  font-weight: bolder !important;
+}

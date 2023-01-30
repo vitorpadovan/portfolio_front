@@ -7,6 +7,8 @@ import ProjectList from "./component/ProjectList/ProjectList";
 import JobList from "./component/JobList/JobList";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import { connect } from "react-redux";
+import AboutCard from "./component/AboutCard/AboutCard";
+import ContactCard from "./component/ContactCard/ContactCard";
 
 function App(props) {
   const jobs = props.jobList;
@@ -14,7 +16,7 @@ function App(props) {
   const project = props.projectList;
   const sections = [
     { id: 1, name: "Atualizações", link: "/", widget: <UpdateCard /> },
-    { id: 2, name: "Sobre", link: "/about", widget: <EmDesenvolvimento /> },
+    { id: 2, name: "Sobre", link: "/about", widget: <AboutCard /> },
     {
       id: 3,
       name: "Projetos",
@@ -39,7 +41,7 @@ function App(props) {
       selected: course.selectedItems.length,
       items: course.itemList.length,
     },
-    { id: 6, name: "Contato", link: "contact", widget: <EmDesenvolvimento /> },
+    { id: 6, name: "Contato", link: "contact", widget: <ContactCard /> },
   ];
   return (
     <Router>
