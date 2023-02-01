@@ -3,24 +3,25 @@ function AboutCard(props) {
   return (
     <div className="about">
       <p>
-        Missionário dos{" "}
-        <a href="https://www.jovenssarados.com/" target="_blank">
-          Jovens Sarados
-        </a>
-        , Formado em Ciências da Computação pelo COC, Técnico em Informática
-        pelo Senac de Ribeirão Preto e técnico em manutenção de computadores
-        pelo Microcamp sempre tive muito interesse na área de TI.
+        Sou apaixonado por tecnologia e tenho uma paixão especial por TI. Com
+        anos de experiência como desenvolvedor full-stack, tenho a capacidade de
+        trabalhar tanto no lado front-end quanto no lado back-end para criar
+        soluções incríveis e atender às necessidades de nossos clientes
       </p>
       <p>
-        Gosto de estudar um pouco de programação no meu tempo livre, e tentar
-        sempre fazer além do que vejo em cursos, colocar em prática com ideias
-        de projetos que vão além do tema apresentado em cursos, fazendo assim
-        com que aprenda mais ainda
+        Além disso, faço projetos particulares como hobby, o que me permite
+        sempre estar atualizado com as últimas tendências e tecnologias do
+        mercado. Sou também missionário do <a href="">Jovens Sarados</a>.
       </p>
       <p>
-        Tento sempre aplicar minhas ideias no projeto de tal maneira que eu
-        possa vender um produto final de qualidade e tiro isso como proveitos
-        para estudar e praticar.
+        Meu objetivo é sempre ajudar a transformar ideias em realidade, usando
+        minha paixão por tecnologia e meu conhecimento técnico para criar
+        soluções inovadoras e eficientes.
+      </p>
+      <p>
+        Se você está procurando por alguém que compartilhe sua paixão por TI e
+        tenha a capacidade de transformar suas ideias em realidade, entre em
+        contato comigo.
       </p>
     </div>
   );
