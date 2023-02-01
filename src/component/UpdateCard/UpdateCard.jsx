@@ -1,3 +1,3 @@
 export default function UpdateCard(props) {
-  return <h1>Sistema atualizado em: 30/01/2023 - 12:18</h1>;
+  return <h1>Sistema atualizado em: 01/02/2023 - 05:24</h1>;
 }
