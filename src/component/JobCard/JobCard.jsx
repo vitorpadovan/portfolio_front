@@ -1,4 +1,3 @@
-import { CheckCircleOutline } from "@mui/icons-material";
 import SmartTagList from "../SmartTagList/SmartTagList";
 import "./JobCard.css";
 
