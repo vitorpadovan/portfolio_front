@@ -1,11 +1,58 @@
+@media (max-width: 550px) {
+  .contact {
+    width: 90% !important;
+    max-width: 100% !important;
+  }
+}
+
+@media (min-width: 551px) and (max-width: 750px) {
+  .contact {
+    width: 70% !important;
+    max-width: 100% !important;
+  }
+}
+
+@media (min-width: 751px) and (max-width: 1300px) {
+  .contact {
+    width: 60% !important;
+    max-width: 100% !important;
+  }
+}
+
+.contactItem {
+  flex-direction: column !important;
+  margin-bottom: 30px;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  color: black;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+}
+
 .contact {
   display: flex;
   flex-direction: column;
   text-align: left;
-  width: 80%;
+  max-width: 30%;
   margin: 30px auto;
 }
 
-.contactItem {
-  margin-bottom: 30px;
+.contactIcon {
+  max-width: 30px;
+  padding: 3px;
+}
+.contactName {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.contactDescription {
+  margin-left: 3px;
+  display: flex;
+  align-items: center;
+  align-content: center;
 }
