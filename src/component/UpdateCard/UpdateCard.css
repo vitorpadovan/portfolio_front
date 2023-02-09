@@ -1,0 +1,19 @@
+.updateCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.updateCard > .statusGitHub {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.updateCard > .statusGitHub > img {
+  min-height: 200px;
+  margin: 5px;
+  padding: 5px;
+}
