@@ -15,7 +15,16 @@ function App(props) {
   const course = props.courses;
   const project = props.projectList;
   const sections = [
-    { id: 1, name: "Atualizações", link: "/", widget: <UpdateCard /> },
+    {
+      id: 1,
+      name: "Atualizações",
+      link: "/",
+      widget: (
+        <>
+          <UpdateCard />
+        </>
+      ),
+    },
     { id: 2, name: "Sobre", link: "/about", widget: <AboutCard /> },
     {
       id: 3,
