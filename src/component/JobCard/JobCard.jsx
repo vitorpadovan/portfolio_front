@@ -4,9 +4,16 @@ import "./JobCard.css";
 export default function JobCard(props) {
   const e = props.job;
   var inicio = new Date(e.startDate);
-  var fim = new Date(e.endDate);
+  var fim;
+  if(e.endDate == null)
+    fim = null;
+  else {
+    fim = new Date(e.endDate);
+    fim.setHours(fim.getHours() + 3);
+  }
+    
   inicio.setHours(inicio.getHours() + 3);
-  fim.setHours(fim.getHours() + 3);
+  
 
   console.log(fim, " ", e.endDate);
   return (
@@ -18,9 +25,9 @@ export default function JobCard(props) {
       ) : null}
       <div className="jobContent">
         <div className="jobTitle">
-          <strong>{e.companyName}</strong> - {e.mainPosition} -{" "}
-          {inicio.toLocaleDateString("pt-BR")} -{" "}
-          {fim.toLocaleDateString("pt-BR")}
+          <strong>{e.companyName}</strong> - {e.mainPosition} {" "}-{" "}
+          {inicio.toLocaleDateString("pt-BR")}-{" "} 
+          {fim != null ? fim.toLocaleDateString("pt-BR") : "Atual"}
         </div>
         <div className="jobDescription">{e.description}</div>
         <div className="jobActivity">
